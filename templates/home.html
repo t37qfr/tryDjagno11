@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block head_title %}Home 1 | {{ block.super}} {% endblock %}
+{% block contentname %}
+
+    HOME.HTML<br>
+    {% verbatim %}{{ html_var }}{% endverbatim %}<br>
+    {% if bool_item   %}
+        {{ num }}
+    {% endif %}
+    <br>
+    <h1>{{ block.super }}</h1>
+<br>
+    {% for some_item in some_list %}
+        {% if some_item|divisibleby:"2" %}
+            Even number:  {{ some_item }}<br>
+        {% endif %}
+    {% endfor %}
+
+{% endblock contentname %}
+
