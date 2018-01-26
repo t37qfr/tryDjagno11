@@ -19,7 +19,7 @@ class RestaurantCreateForm(forms.Form):
 
 class RestorantLocationCreateForm(forms.ModelForm):
     #email = forms.EmailField()
-    category = forms.CharField(required=False,validators=[validate_category])
+    #category = forms.CharField(required=False,validators=[validate_category])
     class Meta:
         model = RestaurantLocation
         fields = [

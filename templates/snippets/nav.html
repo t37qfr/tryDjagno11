@@ -1,8 +1,12 @@
 <div class="container">
 <div class="nav">
-    <a href="/">Home</a>
-    <a href="/about">About</a>
-    <a href="/contact">Contact</a>
-    <a href="/restaurants">Restaurants</a>
+    <a href='{% url "home" %}'>Home</a>
+    <a href='{% url "about" %}'>About</a>
+    <a href='{% url "contact" %}'>Contact</a>
+ {% if request.user.is_authenticated %}
+    <a href='{% url "restaurants:list" %}'>Restaurants</a>
+    <a href='{% url "menus:list" %}'>Menus</a>
+ {% endif %}
+
 </div>
 </p>

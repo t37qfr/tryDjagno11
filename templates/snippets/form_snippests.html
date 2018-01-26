@@ -1,0 +1,9 @@
+{% if form.errors.non_field_errors %}
+{{ form.errors.non_field_errors }}
+{% endif %}
+
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit">SAVE</button>
+
+</form>

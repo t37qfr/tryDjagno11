@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block head_title %} {{ user.username }} | {{ block.super}} {% endblock %}
+
+{% block contentname %}
+<h1>{{ user.username }}</h1>
+{% if user.profile in request.user.is_following.all %}
+    Is following
+{% endif %}
+<p>{% include  'profiles/snippet/follow_form.html' with username=user.username %}</p>
+<form action="." method="GET">
+    <input type="text" placeholder="search" name="q" value="{{ request.GET.q}}">
+    <button class="btn btn-default" type="submit">Search</button>
+</form>
+
+
+{% if user.item_set.all.exists %}
+{% if locations %}
+    {% for rest in locations %}
+   <div class="row">
+      <div class="col-sm-12" style="border:1px solid #efefef;">
+          <div class="thumbnail">
+              <h3><b>{{ rest.title }}</b></h3><small>{{ rest.location }}</small>
+          <ul>
+                {%for item in rest.item_set.all %}
+                <li>
+                    {{ item.name }}
+                    <br>
+                    {% for ing in item.get_contents %}
+                    <a href="{{ request.path }}?q={{ ing }}">
+                         <span class="badge badge-default">{{ ing }}</span>
+                    </a>
+                    {% endfor %}
+                </li>
+                {% endfor %}
+            </ul>
+          </div>
+        </div>
+   </div>
+    {% endfor %}
+{% else %}
+     <p>No Items Found</p>
+{% endif %}
+{% endif %}
+
+{% endblock %}
